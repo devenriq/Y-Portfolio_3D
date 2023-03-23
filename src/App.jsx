@@ -1,10 +1,37 @@
-export const App = () => {
+import { BrowserRouter } from "react-router-dom";
+
+import {
+  About,
+  Contact,
+  Experience,
+  Feedbacks,
+  Hero,
+  Navbar,
+  Tech,
+  Works,
+  StarsCanvas,
+} from "./components";
+
+const App = () => {
   return (
-    <div className="bg-red-300">
-      <h1 className="bg-red-300 w-full ">Hello world</h1>
-      <div className="text-center bg-red-600">
-        <h3>Hola</h3>
+    <BrowserRouter>
+      <div className="relative z-0 bg-primary">
+        <div className="bg-hero-pattern bg-cover bg-no-repeat bg-center text-white">
+          <Navbar />
+          <Hero />
+        </div>
+        <About />
+        <Experience />
+        <Tech />
+        <Works />
+        <Feedbacks />
+        <div className="relative z-0">
+          <Contact />
+          <StarsCanvas />
+        </div>
       </div>
-    </div>
+    </BrowserRouter>
   );
 };
+
+export default App;
