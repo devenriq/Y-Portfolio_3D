@@ -1,4 +1,4 @@
-function App() {
+export const App = () => {
   return (
     <div className="bg-red-300">
       <h1 className="bg-red-300 w-full ">Hello world</h1>
@@ -7,6 +7,4 @@ function App() {
       </div>
     </div>
   );
-}
-
-export default App;
+};
