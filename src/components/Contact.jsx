@@ -3,10 +3,10 @@ import { motion } from "framer-motion";
 
 import emailjs from "@emailjs/browser";
 
-import { styles } from "../styles";
 import { EarthCanvas } from "./canvas";
 import { SectionWrapper } from "../hoc";
 import { slideIn } from "../utils/motion";
+import { styles } from "../styles";
 
 const Contact = () => {
   const formRef = useRef();
@@ -17,9 +17,48 @@ const Contact = () => {
   });
   const [loading, setLoading] = useState(false);
 
-  const handleChange = (e) => {};
+  const handleChange = (e) => {
+    const { name, value } = e.target;
 
-  const handleSubmit = (e) => {};
+    setForm({ ...form, [name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    emailjs
+      .send(
+        "service_fwxvtjs",
+        "template_3qu0ny6",
+        {
+          from_name: form.name,
+          to_name: "Enrique",
+          from_email: form.email,
+          to_email: "octepc.97@gmail.com",
+          message: form.message,
+        },
+        "zrRPfcy71pLFWttSG"
+      )
+      .then(() => {
+        setLoading(false);
+        alert("Thank you. I'll contact you as soon as possible");
+        setForm(
+          {
+            name: "",
+            email: "",
+            message: "",
+          },
+          (error) => {
+            setLoading(false);
+
+            console.log(error);
+
+            alert("Something went wrong");
+          }
+        );
+      });
+  };
 
   return (
     <div className="xl:mt-12 xl:flex-row flex-col-reverse flex gap10 overflow-hidden">
